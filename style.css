@@ -4,42 +4,10 @@
     box-sizing: border-box;
 }
 
-.loading-container {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background: #fff; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 99999;
-}
-
-.loading-circle {
-    width: 50px;
-    height: 50px;
-    border: 5px solid #ccc;
-    border-top: 5px solid #333;
-    border-radius: 50%;
-    animation: spin 2s linear infinite;
-}
-
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-body.loaded .loading-container {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 2s ease-out;
-    visibility: 2s ease-out;
-}
-
-
 body {
     font-family: Arial, sans-serif;
- 
+    margin: 0;
+    padding-top: 80px; /* Prevents content from hiding under fixed header */
 }
 
 .header {
@@ -48,18 +16,17 @@ body {
     align-items: center;
     padding: 15px 50px;
     background-image: url('hero-bg.png');
+    position: fixed;
     width: 100%;
-    top: 0px; 
+    top: 0px; /* Ensure it's visible from the start */
     left: 0;
     transition: top 0.4s ease-in-out;
-    z-index: 9999;
+    z-index: 1000;
 }
 
 .header.visible {
-    top: 0; 
+    top: 0; /* Ensure it always remains visible */
 }
-
-
 
 
 .logo {
@@ -75,7 +42,7 @@ body {
 .navbar {
     position: fixed;
     top: 0;
-    left: -100%;
+    left: 0;
     width: 80%;
     height: 100vh;
     background: white;
@@ -87,9 +54,12 @@ body {
     box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
     transition: left 0.3s ease-in-out;
     z-index: 999;
+    visibility: hidden;
+    
 }
-.navbar.active {
-    left: 0;
+.active {
+    right: 0;
+    visibility: visible;
 }
 
 .navbar li {
@@ -111,13 +81,14 @@ body {
     color: rgb(255, 183, 0);
 }
 
+/* Close Button */
 .close-menu {
     position: absolute;
     top: 20px;
     right: 30px;
     font-size: 30px;
     cursor: pointer;
-    display: block; 
+    display: block; /* Show on small screens */
 }
 .header-action {
     display: flex;
@@ -148,60 +119,66 @@ body {
 }
 
 
+/* Hide menu icon on large screens */
 .menu-icon {
     font-size: 25px;
     cursor: pointer;
     display: inline-block;
 }
 
+/* 📌 Responsive Design */
+@media (min-width: 768px) {
+    .navbar {
+        position: static;
+        width: auto;
+        height: auto;
+        flex-direction: row;
+        box-shadow: none;
+        left: 0;
+        padding: 0;
+        visibility: visible;
+    }
 
-.navbar {
-    position: static;
-    width: auto;
-    height: auto;
-    flex-direction: row;
-    box-shadow: none;
-    left: 0;
-    padding: 0;
-}
-
-.navbar li {
-    margin: 0 20px;
-}
-
-
-.menu-icon, .close-menu {
-    display: none; 
-}
+    .navbar li {
+        margin: 0 20px;
+    }
 
 
-@media (max-width: 768px) {
-    .btn-primary {
-        display: none;
+    .menu-icon, .close-menu {
+        display: none; /* Hide menu icon and close button on large screens */
     }
 }
 
+/* Hide "ORDER NOW" button on small screens */
+    @media (max-width: 768px) {
+        .btn-primary {
+            display: none;
+            }
+        }
 
+
+/* Hero Section */
 .hero {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
+    height: 100vh;
     background-size: cover;
     background-position: center;
     padding: 20px;
+    width: 100%;
+    overflow: hidden;
 }
 
 .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1200px;
     width: 100%;
     gap: 30px;
 }
 
-
+/* Left Content */
 .hero-content {
     flex: 1;
     max-width: 500px;
@@ -239,7 +216,7 @@ body {
     color: white;
 }
 
-
+/* Right Image */
 .hero-banner {
     position: relative;
     flex: 1;
@@ -253,6 +230,7 @@ body {
     border-radius: 20px;
 }
 
+/* Shapes */
 .shape {
     position: absolute;
 }
@@ -269,7 +247,7 @@ body {
     animation: float 3s infinite alternate-reverse;
 }
 
-
+/* Floating Animation */
 @keyframes float {
     0% {
         transform: translateY(0);
@@ -279,7 +257,7 @@ body {
     }
 }
 
-
+/* Responsive Design */
 @media (max-width: 820px) {
     .hero-title {
         font-size: 60px;
@@ -313,18 +291,18 @@ body {
 
 @media (max-width: 768px) {
     .hero-content {
-        text-align: left; 
-        padding: 20px; 
+        text-align: left; /* Align text to the left */
+        padding: 20px; /* Add spacing */
     }
 
     .hero-title {
-        font-size: 40px; 
+        font-size: 40px; /* Adjust title size */
         font-weight: bold;
     }
 
     .hero-text {
-        font-size: 20px; 
-        color: #666; 
+        font-size: 20px; /* Reduce text size */
+        color: #666; /* Slightly faded color */
     }
 
     .btn {
@@ -349,7 +327,7 @@ body {
 }
 }
 
-
+/* General Section Styling */
 .instruction {
     text-align: center;
     padding: 60px 20px;
@@ -371,18 +349,18 @@ body {
     margin: 0 auto 40px;
 }
 
-
+/* Grid Layout - Display Items in a Row */
 .grid-list {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 30px;
-    flex-wrap: nowrap; 
+    flex-wrap: nowrap; /* Ensures items stay in a row */
     list-style: none;
     padding: 0;
 }
 
-
+/* Card Styling */
 .instruction-card {
     padding: 20px;
     text-align: center;
@@ -391,7 +369,7 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
-
+/* Image Styling */
 .card-banner img {
     width: 294px;
     height: 150px;
@@ -399,7 +377,7 @@ body {
     margin: 0 auto 15px;
 }
 
-
+/* Title & Text */
 .card-title {
     font-size: 24px;
     font-weight: bolder;
@@ -419,7 +397,7 @@ body {
     line-height: 1.5;
 }
 
-
+/* Animations */
 @keyframes fadeInUp {
     from {
         transform: translateY(30px);
@@ -431,15 +409,15 @@ body {
     }
 }
 
-
+/* Reveal on Scroll */
 [data-reveal] {
     animation: fadeInUp 0.8s ease-out forwards;
 }
 
-
+/* Responsive Design */
 @media screen and (max-width: 992px) {
     .grid-list {
-        flex-wrap: wrap; 
+        flex-wrap: wrap; /* Allows wrapping on smaller screens */
         justify-content: center;
     }
 
@@ -450,7 +428,7 @@ body {
 
 @media screen and (max-width: 768px) {
     .grid-list {
-        flex-direction: column; 
+        flex-direction: column; /* Stacks items on smaller screens */
     }
 
     .instruction-card {
@@ -460,6 +438,7 @@ body {
 
 
 
+/* General Section Styling */
 .section.top-restaurant {
     text-align: left;
     padding: 60px 20px;
@@ -467,6 +446,7 @@ body {
     margin-left: 30px;
 }
 
+/* Intro Section Styling */
 .restaurant-intro {
     display: flex;
     justify-content: flex-start;
@@ -479,7 +459,7 @@ body {
     color: #333;
 }
 
-
+/* Title & Text */
 .section-title {
     font-size: 50px;
     font-weight: bold;
@@ -494,7 +474,7 @@ body {
     margin: 0 auto 40px;
 }
 
-
+/* 2-Column Grid Layout */
 .grid-lista {
     display: grid;
     grid-template-columns: repeat(2, minmax(280px, 1fr)); /* 2 columns */
@@ -504,7 +484,7 @@ body {
     padding: 0;
 }
 
-
+/* Restaurant Cards */
 .restaurant-card {
     padding: 20px;
     text-align: left;
@@ -518,7 +498,7 @@ body {
     transform: translateY(-5px);
 }
 
-
+/* Card Icon (Image) */
 .card-icon img {
     width: 100px;
     height: 100px;
@@ -528,7 +508,7 @@ body {
     align-self: start;
 }
 
-
+/* Restaurant Name */
 .card-title {
     font-size: 1.3rem;
     font-weight: bold;
@@ -536,13 +516,13 @@ body {
     margin-bottom: 10px;
 }
 
-
+/* Rating Stars */
 .rating-wrapper ion-icon {
     color: #FFA500;
     font-size: 18px;
 }
 
-
+/* Category Tags */
 .card-meta-wrapper {
     margin: 10px 0;
 }
@@ -565,18 +545,20 @@ body {
     color: white;
 }
 
+/* Description Text */
 .card-text {
     font-size: 16px;
     color: #666;
     margin-top: 10px;
 }
 
+/* Button Styling */
 .btn-container {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-top: 20px; 
+    margin-top: 20px; /* Adjust as needed */
 }
 
 .btn-secondary {
@@ -584,7 +566,7 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px 20px;
-    border: 2px solid orange; 
+    border: 2px solid orange; /* Adjust color if needed */
     color: orange;
     font-weight: bold;
     text-decoration: none;
@@ -597,9 +579,9 @@ body {
     color: white;
 }
 
-@media (max-width: 1024px) { 
+@media (max-width: 1024px) {  /* iPad Pro & Tablets */
     .restaurant-intro {
-        padding-left: 50px;  
+        padding-left: 50px;  /* Reduce left padding */
     }
 
     .intro-content {
@@ -607,7 +589,7 @@ body {
     }
 }
 
-@media (max-width: 820px) {  
+@media (max-width: 820px) {  /* iPads & small tablets */
     .restaurant-intro {
         flex-direction: column;
         align-items: center;
@@ -622,7 +604,7 @@ body {
     }
 }
 
-@media (max-width: 480px) {  
+@media (max-width: 480px) {  /* Mobile Phones */
     .restaurant-intro {
         padding: 40px 5%;
     }
@@ -687,11 +669,11 @@ body {
     gap: 40px;
     max-width: 1200px;
     width: 100%;
-    flex-wrap: wrap; 
+    flex-wrap: wrap; /* Allows stacking on smaller screens */
     justify-content: center;
 }
   
-
+  /* Image styling */
   .cta-banner {
     flex: 1;
     display: flex;
@@ -705,7 +687,7 @@ body {
     height: auto;
 }
   
-
+  /* Content styling */
   .cta-content {
     flex: 1;
     max-width: 500px;
@@ -723,7 +705,7 @@ body {
     margin: 10px 0 20px;
 }
   
-
+  /* Button styling */
   .ctabtn {
     display: flex;
     align-items: center;
@@ -745,10 +727,10 @@ body {
     background-color: #ffffff;
 }
   
-
+  /* Responsive Design */
   @media (max-width: 992px) {
     .container {
-      flex-direction: column; 
+      flex-direction: column; /* Stack content on smaller screens */
       text-align: center;
     }
   
@@ -807,7 +789,7 @@ body {
     width: 100%;
 }
 
-
+/* Grid layout for stats */
 .grid-list {
     display: flex;
     align-items: center;
@@ -818,7 +800,7 @@ body {
     width: 100%;
 }
 
-
+/* Title Section */
 .h3.section-title {
     font-size: 34px;
     font-weight: bold;
@@ -827,7 +809,7 @@ body {
     flex: 1 1 100%;
 }
 
-
+/* Stats Box */
 .stats-item {
     background: #fff;
     border-radius: 12px;
@@ -835,19 +817,20 @@ body {
     width: 264px;
     height: 131px;
     display: flex;
-    align-items: center;  
+    align-items: center;  /* Centers vertically */
     padding: 20px;
-    gap: 10px;
+    gap: 10px;  /* Space between number and text */
 }
 
-
+/* Large Number */
 .stats-item .span {
     font-size: 48px;
     font-weight: bold;
     color: orange;
-    flex-shrink: 0; 
+    flex-shrink: 0; /* Prevents resizing */
 }
 
+/* Description Text */
 .stats-text {
     font-size: 16px;
     color: #666;
@@ -855,9 +838,9 @@ body {
     line-height: 1.4;
 }
 
+/* 🔥 RESPONSIVENESS 🔥 */
 
-
-
+/* Tablets (1024px) */
 @media (max-width: 1024px) {
     .grid-list {
         justify-content: center;
@@ -882,7 +865,7 @@ body {
         text-align: center;
     }
     .grid-list {
-        flex-direction: column;  
+        flex-direction: column;  /* Stack stats items */
         align-items: center;
         gap: 20px;
     }
@@ -892,6 +875,7 @@ body {
     }
 }
 
+/* Small Tablets & Phones (768px) */
 @media (max-width: 768px) {  
     .stats {
         text-align: center;
@@ -904,7 +888,7 @@ body {
     }
     .stats-item {
         display: flex;
-        flex-direction: column;  
+        flex-direction: column;  /* Stack elements */
         align-items: center;
         justify-content: center;
         height: auto;
@@ -921,13 +905,13 @@ body {
     }
 }
 
-
+/* Mobile Phones (480px) */
 @media (max-width: 480px) {  
     .stats {
         padding: 40px 10px;
     }
     .stats-item {
-        width: 90%; 
+        width: 90%; /* Use more screen width */
         max-width: 280px;
         height: auto;
         padding: 15px;
@@ -941,7 +925,7 @@ body {
 }
 
 
-
+/* 🎨 General Styling */
 .testi {
     padding: 60px 20px;
     background-color: #fff;
@@ -956,7 +940,7 @@ body {
     margin: 0 auto;
 }
 
-
+/* 📜 Left Content (Text & Quote) */
 .testi-content {
     flex: 1;
     max-width: 550px;
@@ -975,7 +959,7 @@ body {
     margin-bottom: 20px;
 }
 
-
+/* 🖼️ Customer Info */
 .wrapper {
     display: flex;
     align-items: center;
@@ -1002,7 +986,7 @@ body {
     font-size: 18px;
 }
 
-
+/* ⭐ Right Image Section */
 .testi-banner {
     flex: 1;
     position: relative;
@@ -1015,9 +999,10 @@ body {
     border-radius: 10px;
 }
 
-
+/* 👍 Icon Bubble */
 .testi-banner::after {
-    content: url('like-icon.png'); 
+    content: url('like-icon.png'); /* Replace with actual thumbs-up icon */
+    position: absolute;
     top: -30px;
     left: -30px;
     background: #fff;
@@ -1026,7 +1011,9 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* 🛠️ RESPONSIVENESS */
 
+/* 📱 Tablets (768px - 1024px) */
 @media (max-width: 1024px) {
     .testi .container {
         flex-direction: column;
@@ -1040,7 +1027,7 @@ body {
     }
 }
 
-
+/* 📱 Phones (Below 768px) */
 @media (max-width: 768px) {
     .testi .container {
         flex-direction: column;
@@ -1075,22 +1062,23 @@ body {
     display: grid;
 }
 
-
+/* Ensure the text stays at the top */
 .partjoin {
     color: #fff;
     font-size: 48px;
     font-weight: bold;
     text-align: center;
-
+ /* Increase space below the text */
 }
 
+/* Push cards down */
 .cardcontd {
     display: flex;
     justify-content: center;
     gap: 30px;
     flex-wrap: wrap;
     list-style: none;
-    padding: 20px 0; 
+    padding: 20px 0; /* Add padding to push it down */
 }
 
 
@@ -1108,6 +1096,7 @@ body {
     display: block;
 }
 
+/* Content Styles */
 .card-details {
     position: absolute;
     bottom: 0px;
@@ -1122,7 +1111,7 @@ body {
     margin-bottom: 15px;
 }
 
-
+/* Button Styling */
 .action-btn {
     display: inline-flex;
     align-items: center;
@@ -1152,7 +1141,7 @@ body {
 
 @media (max-width: 1024px) {
     .partjoin {
-        font-size: 32px; 
+        font-size: 32px; /* Slightly smaller for tablets */
     }
     
     .cardcontd {
@@ -1168,7 +1157,7 @@ body {
     }
 
     .partner-card {
-        max-width: 380px; 
+        max-width: 380px; /* Smaller width on smaller screens */
     }
     
     .title {
@@ -1217,10 +1206,10 @@ body {
     justify-content: space-between;
     max-width: 1200px;
     width: 100%;
-    gap: 40px; 
+    gap: 40px; /* Adds space between image and text */
 }
 
-
+/* Image Styling */
 .newsletter-banner {
     max-width: 50%;
     flex: 1;
@@ -1231,7 +1220,7 @@ body {
     height: auto;
 }
 
-
+/* Text & Input Section */
 .newsletter-content {
     flex: 1;
     max-width: 50%;
@@ -1245,12 +1234,12 @@ body {
     color: #333;
 }
 
-
+/* Input & Button Styling */
 .input-wrapper {
     display: block;
     align-items: center;
     gap: 10px;
-    flex-wrap: wrap; 
+    flex-wrap: wrap; /* Allows wrapping on smaller screens */
 }
 
 .input-field {
@@ -1260,14 +1249,14 @@ body {
     border-radius: 8px;
     font-size: 16px;
     width: 100%;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Cool soft shadow */
     transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-
+/* Enhance shadow effect on focus */
 .input-field:focus {
     border-color: #ff9800;
-    box-shadow: 0px 6px 15px rgba(255, 152, 0, 0.3); 
+    box-shadow: 0px 6px 15px rgba(255, 152, 0, 0.3); /* Stronger glow on focus */
     outline: none;
 }
 
@@ -1295,7 +1284,7 @@ body {
     background-color: #ffffff;
 }
 
-
+/* 📱 Responsive Styling */
 @media (max-width: 1024px) {
     .containerb {
         flex-direction: column;
@@ -1331,7 +1320,7 @@ body {
     }
 }
 
-
+/* Footer Styles */
 .footer {
     background-color: #222;
     color: #fff;
@@ -1345,20 +1334,20 @@ body {
     margin: auto;
 }
 
-
+/* Footer Layout */
 .footer-top {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px; 
+    gap: 70px; /* Increased gap between sections */
 }
 
-
+/* Footer Brand (Left Section) */
 .footer-brand {
     max-width: 500px;
 }
 
 .footer-title {
-    font-size: 48px; 
+    font-size: 48px; /* Slightly bigger title */
     font-weight: bold;
     margin: 25px 0;
 }
