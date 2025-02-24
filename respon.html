@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Responsive Fasteat</title>
+    <style>
+.join-partnership-section {
+    background-color: #2e2e2e;
+    padding: 50px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Ensure the text stays at the top */
+.section-heading {
+    color: #fff;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px; /* Increase space below the text */
+}
+
+/* Push cards down */
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 20px 0; /* Add padding to push it down */
+}
+
+
+.partner-card {
+    position: relative;
+    width: 512px;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 10px solid #ff9800;
+}
+
+.image-box img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Content Styles */
+.card-details {
+    position: absolute;
+    bottom: 20px;
+    left: 15px;
+    text-align: left;
+}
+
+.title {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Button Styling */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    background-color: #FFA500;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    position: absolute;
+    left: 0;
+    bottom: -20px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.action-btn:hover {
+    transform: scale(1.05);
+}
+
+.action-btn ion-icon {
+    margin-left: 8px;
+}
+
+    </style>
+</head>
+<body>
+
+    <section class="join-partnership-section" aria-label="partnership">
+        <div class="wrapper">
+            <h2 class="section-heading">Want to Join Partnership?</h2>
+            <ul class="card-container">
+                <li>
+                    <div class="partner-card">
+                        <figure class="image-box">
+                            <img src="partner-1.jpg" alt="Join Courier" class="responsive-img">
+                        </figure>
+                        <div class="card-details">
+                            <h3 class="title">Join Courier</h3>
+                            <a href="#" class="action-btn">
+                                <span>Learn More</span>
+                                <ion-icon name="arrow-forward"></ion-icon>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="partner-card">
+                        <figure class="image-box">
+                            <img src="partner-2.jpg" alt="Join Merchant" class="responsive-img">
+                        </figure>
+                        <div class="card-details">
+                            <h3 class="title">Join Merchant</h3>
+                            <a href="#" class="action-btn">
+                                <span>Learn More</span>
+                                <ion-icon name="arrow-forward"></ion-icon>
+                            </a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+</body>
+</html>
